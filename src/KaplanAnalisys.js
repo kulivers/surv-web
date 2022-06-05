@@ -36,20 +36,6 @@ export function KaplanAnalisys() {
     ]
     const classes = useStyles();
 
-    const [fields, setFields] = useState([]);
-    const [fieldsNames, setFieldsNames] = useState([]);
-
-    useEffect(() => {
-        axios.get(`http://127.0.0.1:8000/filters`)
-            .then(res => {
-                setFields(res.data)
-                let names = res.data.map(field => field.description)
-                setFieldsNames(names)
-
-            })
-
-    }, []);
-
 
     return (
         <Container maxWidth={'lg'}>
@@ -68,7 +54,7 @@ export function KaplanAnalisys() {
                     <Button variant="contained" color="primary" style={{marginRight: '8px'}}>Рассчитать</Button>
                     <Button variant="contained" color="secondary">Добавить фильтр</Button>
                 </Container>
-                <FieldFilter fieldsNames={fieldsNames} fields={fields}/>
+                <FieldFilter/>
                 <br/>
                 <ChartSection data={testchart1Data}/>
                 <br/>
@@ -80,21 +66,23 @@ export function KaplanAnalisys() {
 
 const findValues = (fieldDescription, fields) => {
     let possibleValues = []
-    let dictionary ={}
+    let dictionary = {}
     fields.forEach(field => {
         if (field.description === fieldDescription) {
-            dictionary=field.dictionary
+            dictionary = field.dictionary
         }
     })
     //
     for (let key in dictionary) {
-        possibleValues.push( dictionary[key])
+        possibleValues.push(dictionary[key])
     }
     return possibleValues
 }
 
-function FieldFilter({fieldsNames, fields}) {
+function FieldFilter() {
     const classes = useStyles();
+    const [fields, setFields] = useState([]);
+    const [fieldsNames, setFieldsNames] = useState([]);
     const [selectedValue1, setSelectedValue1] = useState('');
     const [selectedValue2, setSelectedValue2] = useState('');
     const [possibleValues, setPossibleValues] = useState([]);
@@ -104,6 +92,17 @@ function FieldFilter({fieldsNames, fields}) {
         let foundPossibleValues = findValues(value, fields)
         setPossibleValues(foundPossibleValues)
     }
+
+    useEffect(() => {
+        axios.get(`http://127.0.0.1:8000/filters`)
+            .then(res => {
+                setFields(res.data)
+                let names = res.data.map(field => field.description)
+                setFieldsNames(names)
+
+            })
+
+    }, []);
 
     return (<Grid container style={{marginTop: '20px'}} spacing={3} justifyContent="center">
             <button onClick={() => {
@@ -149,7 +148,7 @@ function MyMenu1({arr, selectValue}) {
                 value={value}
                 onChange={handleChange}
             >
-                {arr.map(el => <MenuItem value={el} key = {Math.random()}>{el}</MenuItem>)}
+                {arr.map(el => <MenuItem value={el} key={Math.random()}>{el}</MenuItem>)}
             </Select>
         </FormControl>
 
@@ -170,7 +169,7 @@ function MyMenu2({arr, selectValue}) {
                 value={value}
                 onChange={handleChange}
             >
-                {arr.map(el => <MenuItem value={el} key = {Math.random()}>{el}</MenuItem>)}
+                {arr.map(el => <MenuItem value={el} key={Math.random()}>{el}</MenuItem>)}
             </Select>
         </FormControl>
 
