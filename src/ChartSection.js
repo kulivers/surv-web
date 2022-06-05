@@ -1,12 +1,6 @@
-import React from "react";
-import {makeStyles} from "@material-ui/core/styles";
+import {Chart} from './Chart'
 import Typography from "@material-ui/core/Typography";
-import './App.css';
-import MyNavBar from "./NavBar";
-import {FormControl, Grid, MenuItem, Select} from "@mui/material";
-import {Hello} from "./Hello";
-import {KaplanAnalisys} from "./KaplanAnalisys";
-
+import {makeStyles} from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
     title: {
@@ -26,17 +20,16 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-function App() {
+export function ChartSection({data}) {
+    const classes = useStyles();
     return (
-        <div className="App">
-            <MyNavBar />
-            <Hello/>
-            <KaplanAnalisys/>
-
+        <div className={classes.chartSection}>
+            <div>
+                <Typography variant="h4" className={classes.title}>
+                    Результат анализа выживаемости
+                </Typography>
+            </div>
+            <Chart data={data}/>
         </div>
     );
-
 }
-
-
-export default App;
