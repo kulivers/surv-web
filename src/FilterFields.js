@@ -38,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-export function FieldFilter() {
+export function FieldFilter({filters, setFilters}) {
     const classes = useStyles();
     const [fields, setFields] = useState([]);
     const [fieldsNames, setFieldsNames] = useState([]);
