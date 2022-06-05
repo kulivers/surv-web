@@ -163,18 +163,22 @@ const findValues = (fieldDescription, fields) => {
 
 function FieldFilter({fieldsNames, fields}) {
     const classes = useStyles();
-    const [selectedValue, setSelectedValue] = useState('');
+    const [selectedValue1, setSelectedValue1] = useState('');
+    const [selectedValue2, setSelectedValue2] = useState('');
     const [possibleValues, setPossibleValues] = useState([]);
     const selectValue = (value) => {
-        setSelectedValue(value)
+        setSelectedValue1(value)
         //set possible values - make promise
         let foundPossibleValues = findValues(value, fields)
         setPossibleValues(foundPossibleValues)
     }
+
     return (<Grid container style={{marginTop: '20px'}} spacing={3} justifyContent="center">
             <button onClick={() => {
                 console.log('console.log(fieldsNames)', fieldsNames)
                 console.log('possibleValues', possibleValues)
+                console.log('selectedValue1', selectedValue1)
+                console.log('selectedValue2', selectedValue2)
             }}>DOOOo
             </button>
             <Grid item>
@@ -193,7 +197,7 @@ function FieldFilter({fieldsNames, fields}) {
                 <Typography variant="h4" className={classes.title}>
                     Значения
                 </Typography>
-                <MyMenu2 arr={possibleValues} key={3}/>
+                <MyMenu2 arr={possibleValues} selectValue={setSelectedValue2} key={3}/>
             </Grid>
         </Grid>
     )
@@ -220,10 +224,11 @@ function MyMenu1({arr, selectValue}) {
     )
 }
 
-function MyMenu2({arr}) {
+function MyMenu2({arr, selectValue}) {
     const [value, setValue] = React.useState('');
     const handleChange = (event) => {
         setValue(event.target.value);
+        selectValue(event.target.value)
     };
     return (
         <FormControl fullWidth>
