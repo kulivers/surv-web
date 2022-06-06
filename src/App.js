@@ -28,10 +28,6 @@ function App() {
     const [showSecond, setShowSecond] = useState(false);
     return (
         <div className="App">
-            <button onClick={() => {
-                console.log(showSecond);
-            }}>clg show second
-            </button>
             <MyNavBar setShowSecond={setShowSecond}/>
             <Hello/>
             <KaplanAnalisys/>

@@ -25,7 +25,6 @@ const useStyles = makeStyles((theme) => ({
         justifyContent: 'center'
     }
 }));
-
 const formChartDataFromResponse = (data) => {
     data = {
         "y": [
@@ -558,9 +557,6 @@ export function KaplanAnalisys() {
                     <Button variant="contained" color="secondary" onClick={()=> {
                         setArray([1,2])
                     }} >Добавить фильтр</Button>
-                    <Button variant="contained" color="secondary" onClick={() => {
-                        console.log(arr)
-                    }}>CLG</Button>
                 </Container>
                 {arr.map(el=><FieldFilter filters={filters} setFilters={setFilters}/>)}
 
@@ -572,7 +568,6 @@ export function KaplanAnalisys() {
         </Container>
     );
 }
-
 export function KaplanAnalisys2() {
 
     const [chartData, setChartData] = useState([]);
@@ -620,9 +615,6 @@ export function KaplanAnalisys2() {
                     <Button variant="contained" color="secondary" onClick={()=> {
                         setArray([1,2])
                     }} >Добавить фильтр</Button>
-                    <Button variant="contained" color="secondary" onClick={() => {
-                        console.log(arr)
-                    }}>CLG</Button>
                 </Container>
                 {arr.map(el=><FieldFilter filters={filters} setFilters={setFilters}/>)}
                 <br/>
