@@ -31,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function MyNavBar() {
+export default function MyNavBar({setShowSecond}) {
   const classes = useStyles();
   return (
     <div className={classes.root}>
@@ -49,7 +49,7 @@ export default function MyNavBar() {
             Анализ выживаемости для системы ТГСК
           </Typography>
 
-          <BasicMenu/>
+          <BasicMenu setShowSecond={setShowSecond}/>
         </Toolbar>
       </AppBar>
     </div>

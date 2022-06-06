@@ -1,18 +1,13 @@
 import * as React from 'react';
 import Button from '@mui/material/Button';
-import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
 
-export default function BasicMenu() {
+export default function BasicMenu({setShowSecond}) {
     const [anchorEl, setAnchorEl] = React.useState(null);
     const open = Boolean(anchorEl);
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
+        setShowSecond(true)
     };
-    const handleClose = () => {
-        setAnchorEl(null);
-    };
-
     return (
         <div>
             <Button
@@ -26,18 +21,18 @@ export default function BasicMenu() {
             >
                 Добавить анализ выживаемости
             </Button>
-            <Menu
-                id="basic-menu"
-                anchorEl={anchorEl}
-                open={open}
-                onClose={handleClose}
-                MenuListProps={{
-                    'aria-labelledby': 'basic-button',
-                }}
-            >
-                <MenuItem onClick={handleClose}>Регрессия Кокса</MenuItem>
-                <MenuItem onClick={handleClose}>Метод Каплана-Майера</MenuItem>
-            </Menu>
+            {/*<Menu*/}
+            {/*    id="basic-menu"*/}
+            {/*    anchorEl={anchorEl}*/}
+            {/*    open={open}*/}
+            {/*    onClose={handleClose}*/}
+            {/*    MenuListProps={{*/}
+            {/*        'aria-labelledby': 'basic-button',*/}
+            {/*    }}*/}
+            {/*>*/}
+            {/*    /!*<MenuItem onClick={handleClose}>Регрессия Кокса</MenuItem>*!/*/}
+            {/*    <MenuItem onClick={handleClose}>Метод Каплана-Майера</MenuItem>*/}
+            {/*</Menu>*/}
         </div>
     );
 }

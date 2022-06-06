@@ -1,11 +1,9 @@
-import React from "react";
+import React, {useState} from "react";
 import {makeStyles} from "@material-ui/core/styles";
-import Typography from "@material-ui/core/Typography";
 import './App.css';
 import MyNavBar from "./NavBar";
-import {FormControl, Grid, MenuItem, Select} from "@mui/material";
 import {Hello} from "./Hello";
-import {KaplanAnalisys} from "./KaplanAnalisys";
+import {KaplanAnalisys, KaplanAnalisys2} from "./KaplanAnalisys";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -27,12 +25,19 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function App() {
+    const [showSecond, setShowSecond] = useState(false);
     return (
         <div className="App">
-            <MyNavBar />
+            <button onClick={() => {
+                console.log(showSecond);
+            }}>clg show second
+            </button>
+            <MyNavBar setShowSecond={setShowSecond}/>
             <Hello/>
             <KaplanAnalisys/>
-
+            <br/>
+            <br/>
+            {showSecond ? <KaplanAnalisys2/> : null}
         </div>
     );
 

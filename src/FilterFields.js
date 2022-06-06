@@ -112,8 +112,7 @@ export function FieldFilter({filters, setFilters}) {
     }, []);
 
 
-    return (<Grid container style={{marginTop: '20px', border: '1px solid red'}} spacing={3} justifyContent="center">
-            <button onClick={() => { console.log(selectedValue1, selectedValue2) }}>sadada</button>
+    return (<Grid container style={{marginTop: '20px'}} spacing={3} justifyContent="center">
             <Grid item>
                 <Typography variant="h4" className={classes.title}>
                     Поле
